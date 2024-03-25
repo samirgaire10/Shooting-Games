@@ -1,0 +1,12 @@
+body
+{
+    background-color: skyblue;
+}
+
+.main_char
+{
+    font-size: larger;
+    transition: left 0.5s ease-in-out;
+
+
+}
