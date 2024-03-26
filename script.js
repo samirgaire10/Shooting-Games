@@ -3,8 +3,8 @@ var myObstacle;
 
 function startGame() {
   // size and position of the main character
-  myGamePiece = new component(40, 30, "green", 225, 225);
-  myObstacle = new component(10, 200, "red", 300, 120);
+  myGamePiece = new component(10, 30, "green", 225, 225);
+  myObstacle = new component(100, 20, "red", 300, 120);
 
   myGameArea.start();
 }
@@ -17,7 +17,7 @@ var myGameArea = {
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.frameNo = 0;
-    this.interval = setInterval(updateGameArea, 20);
+    this.interval = setInterval(updateGameArea, 10);
     window.addEventListener("keydown", function (e) {
       e.preventDefault();
       myGameArea.keys = myGameArea.keys || [];
@@ -67,17 +67,26 @@ function updateGameArea() {
   //   left
   if (myGameArea.keys && myGameArea.keys[37]) {
     myGamePiece.speed = -1;
+    // console.log("left");
   }
   if (myGameArea.keys && myGameArea.keys[39]) {
     myGamePiece.speed = 1;
+    // console.log("right");
   }
   if (myGameArea.keys && myGameArea.keys[38]) {
     myGamePiece.speed = 1;
+    // console.log("up");
   }
   //   down
   if (myGameArea.keys && myGameArea.keys[40]) {
     myGamePiece.speed = -1;
+    // console.log("down");
+  }
+
+  if (myGameArea.keys && myGameArea.keys[32]) {
+    console.log("shooting");
   }
   myGamePiece.newPos();
   myGamePiece.update();
+  myObstacle.update();
 }
